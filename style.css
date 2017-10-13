@@ -29,6 +29,7 @@ a.home-exercise {
 
 body {
   display: flex;
+  flex-direction: column;
 }
 
 form {
