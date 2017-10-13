@@ -3,7 +3,7 @@
 @Author:   Ben Sokol <Ben>
 @Email:    bensokol@ku.edu
 @Created:  October 11th, 2017 [11:57pm]
-# @Modified: October 12th, 2017 [9:53pm]
+# @Modified: October 12th, 2017 [10:02pm]
 
 Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
 -->
@@ -26,7 +26,7 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
       printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
     }
- 
+
     $result = $mysqli->query("SELECT COUNT(user_id) FROM Users WHERE user_id = '".$_POST["username"]."'");
     list($count) = $result->fetch_row();
 
@@ -37,9 +37,13 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
       print "ERROR: Usernames must contain at least 1 character<br><br>";
     }
     else {
-      $mysqli->query("INSERT INTO Users (user_id) VALUES (".$_POST["username"].")");
-      print "Welcome ".$_POST["username"]."!<br><br>";
-      print "Your user has been created sucessfully<br><br>";
+      if(!$mysqli->query("INSERT INTO Users (user_id) VALUES ('".$_POST["username"]."')")) {
+        print "An ERROR has occured when adding the username to the database.";
+      }
+      else {
+        print "Welcome ".$_POST["username"]."!<br><br>";
+        print "Your user has been created sucessfully<br><br>";
+      }
     }
     $mysqli->close();
     ?>
