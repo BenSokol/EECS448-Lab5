@@ -3,7 +3,7 @@
 @Author:   Ben Sokol <Ben>
 @Email:    bensokol@ku.edu
 @Created:  October 11th, 2017 [11:57pm]
-# @Modified: October 12th, 2017 [9:14pm]
+# @Modified: October 12th, 2017 [9:37pm]
 
 Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
 -->
@@ -26,7 +26,7 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
       printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
     }
-
+ 
     $result = $mysqli->query("SELECT COUNT(user_id) FROM Users WHERE user_id = '".$_POST["username"]."'");
     list($count) = $result->fetch_row();
 
