@@ -1,9 +1,9 @@
 <!--
-@Filename: CreateUser.html
+@Filename: CreatePosts.html
 @Author:   Ben Sokol <Ben>
 @Email:    bensokol@ku.edu
-@Created:  October 11th, 2017 [11:58pm]
-@Modified: October 12th, 2017 [12:01am]
+@Created:  October 12th, 2017 [9:41pm]
+@Modified: October 12th, 2017 [10:32pm]
 
 Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
 -->
@@ -11,16 +11,15 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
 
 <html>
 <head>
-  <title>EECS 448 - Lab 5 - Exercise 2</title>
+  <title>EECS 448 - Lab 5 - Exercise 3</title>
   <link type="text/css" rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form action="CreateUser.php" method="post" class="form">
-    <h1 class="center">Create User</h1>
-    <div class="center">
-      Username: <input type="text" name="username"></input><br>
-      <input type="submit">
-    </div>
+  <form action="CreatePosts.php" method="post" class="center">
+    <h1>Create Post</h1>
+    Please input your username: <input type="text" name="username" required></input><br>
+    <textarea name="post" cols="60" rows="8" required></textarea><br>
+    <input type="submit">
   </form>
 </body>
 </html>

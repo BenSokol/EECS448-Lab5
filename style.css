@@ -26,3 +26,13 @@ a.home-exercise {
   background-color: rgb(248,249,250);
   border: 1px solid rgb(163,169,176);
 }
+
+form {
+  display: inline-block;
+  margin: auto;
+  margin-top: 100px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  border: 1px solid rgb(163,169,176);
+}

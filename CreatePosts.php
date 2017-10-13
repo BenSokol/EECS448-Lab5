@@ -1,16 +1,17 @@
 <!--
-@Filename: CreateUser.php
+@Filename: CreatePosts.php
 @Author:   Ben Sokol <Ben>
 @Email:    bensokol@ku.edu
-@Created:  October 11th, 2017 [11:57pm]
-# @Modified: October 12th, 2017 [9:53pm]
+@Created:  October 12th, 2017 [9:53pm]
+@Modified: October 12th, 2017 [10:50pm]
 
 Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
 -->
 
+
 <html>
 <head>
-  <title>EECS 448 - Lab 5 - Exercise 2</title>
+  <title>EECS 448 - Lab 5 - Exercise 3</title>
   <link type="text/css" rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,21 +27,29 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
       printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
     }
- 
+
     $result = $mysqli->query("SELECT COUNT(user_id) FROM Users WHERE user_id = '".$_POST["username"]."'");
     list($count) = $result->fetch_row();
 
-    if ($count) {
-      print "ERROR: the username '".$_POST["username"]."' has already been taken.<br><br>";
-    }
-    else if (!isset($_POST["username"])) {
+    if (!isset($_POST["username"])) {
       print "ERROR: Usernames must contain at least 1 character<br><br>";
     }
-    else {
-      $mysqli->query("INSERT INTO Users (user_id) VALUES (".$_POST["username"].")");
-      print "Welcome ".$_POST["username"]."!<br><br>";
-      print "Your user has been created sucessfully<br><br>";
+    else if(!isset($_POST["post"])) {
+      print "ERROR: Posts must contain at least 1 character<br><br>";
     }
+    else if ($count) {
+      if(!$mysqli->query("INSERT INTO Posts (author_id, content) VALUES ('".$_POST["username"]."','".$_POST["post"]."')")) {
+        print "An ERROR has occured when checking if the username is in the database.";
+      }
+      else {
+        print "Welcome ".$_POST["username"]."!<br><br>";
+        print "Your post has been sucessfully created!<br><br>";
+      }
+    }
+    else {
+      print "ERROR: the username '".$_POST["username"]."' has not been created.<br><br>";
+    }
+
     $mysqli->close();
     ?>
   </div>
