@@ -1,14 +1,3 @@
-<!--
-@Filename: CreatePosts.php
-@Author:   Ben Sokol <Ben>
-@Email:    bensokol@ku.edu
-@Created:  October 12th, 2017 [9:53pm]
-@Modified: October 12th, 2017 [10:50pm]
-
-Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
--->
-
-
 <html>
 <head>
   <title>EECS 448 - Lab 5 - Exercise 3</title>
@@ -22,7 +11,6 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
     ini_set("display_errors", 1);
 
     $mysqli = new mysqli("mysql.eecs.ku.edu", "bsokol", 'P@$$word123', "bsokol");
-
     if ($mysqli->connect_errno) {
       printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
@@ -34,11 +22,11 @@ Copyright (C) 2017 by Ben Sokol. All Rights Reserved.
     if (!isset($_POST["username"])) {
       print "ERROR: Usernames must contain at least 1 character<br><br>";
     }
-    else if(!isset($_POST["post"])) {
+    else if (!isset($_POST["post"])) {
       print "ERROR: Posts must contain at least 1 character<br><br>";
     }
     else if ($count) {
-      if(!$mysqli->query("INSERT INTO Posts (author_id, content) VALUES ('".$_POST["username"]."','".$_POST["post"]."')")) {
+      if (!$mysqli->query("INSERT INTO Posts (author_id, content) VALUES ('".$_POST["username"]."','".$_POST["post"]."')")) {
         print "An ERROR has occured when checking if the username is in the database.";
       }
       else {
