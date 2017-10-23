@@ -16,35 +16,39 @@ a.home-exercise {
   border: 1px solid rgb(163,169,176);
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-}
-
 form, .form {
   display: inline-block;
   margin: auto;
   margin-top: 100px;
-  padding-left: 25px;
+  padding: 25px;
+  width: 50%;
+  /*padding-left: 25px;
   padding-right: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 25px;*/
   border: 2px solid rgb(163,169,176);
 }
 
-.navbar {
-  display: -webkit-box;
-  display: flex;
-  white-space: nowrap;
+.github-image {
+   width: 24px;
+   height: 24px;
 }
 
-.navbar li {
-  display: block;
+.tabs {
+  position: fixed;
+  z-index: 1000;
+  background: white;
+  width: 100%;
+}
+.tabs li a {
+  padding: 1em 1em;
+  color: #212121;
 }
 
-.navbar ul {
-  border-bottom-color: #dbdbdb;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  display: -webkit-box;
-  display: flex;
+.tabs li:first-child {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.below-navbar {
+  padding-top: 80px;
 }

@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>EECS 448 - Lab 5 - Exercise 5</title>
+  <title>EECS 448 - Lab 5 - Exercise 4</title>
   <link type="text/css" rel="stylesheet" href="style.css">
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
 </head>
@@ -10,12 +10,13 @@
       <li><big><big><b>Lab 5</b></big></big></li>
       <li><a href="CreateUser.html">Create User</a></li>
       <li><a href="CreatePosts.html">Create Post</a></li>
-      <li><a href="AdminHome.html">Admin Home</a></li>
+      <li class="is-active"><a href="AdminHome.html">Admin Home</a></li>
       <li class="navbar-end"><a href="https://github.com/BenSokol/Lab-5">
         <img class="github-image" src="/~b843s521/EECS448/Lab-5/img/gh.png" alt="Github">
       </a></li>
     </ul>
   </div>
+
   <div class="container below-navbar">
     <article class="message is-dark">
       <div class="message-header">
@@ -26,7 +27,7 @@
         <br>
         <div class="field is-grouped">
           <p class="control">
-            <a class="button is-link" href="ViewUsers.php">View Users</a>
+            <a class="button" href="ViewUsers.php">View Users</a>
           </p>
           <p class="control">
             <a class="button" href="ViewUserPosts.php">View Posts</a>
@@ -37,32 +38,7 @@
         </div>
       </div>
     </article>
-    <?php
-    error_reporting(E_ALL);
-    ini_set("display_errors", 1);
-
-    $mysqli = new mysqli("mysql.eecs.ku.edu", "bsokol", 'P@$$word123', "bsokol");
-    if ($mysqli->connect_errno) {
-      printf("Connect failed: %s\n", $mysqli->connect_error);
-      exit();
-    }
-
-    if ($result = $mysqli->query("SELECT user_id FROM Users")) {
-      print "<table class=\"table is-striped\">";
-      print "<thead><tr><th>Users</th><th>Total Posts</th></tr></thead>";
-      print "<tbody>";
-      while ($row = $result->fetch_assoc()) {
-        $result_count = $mysqli->query("SELECT COUNT(author_id) FROM Posts WHERE author_id = '".$row["user_id"]."'");
-        list($count) = $result_count->fetch_row();
-        print "<tr><td>".$row["user_id"]."</td><td class=\"center\">".$count."</tr>";
-      }
-      print "</tbody>";
-      print "</table>";
-      $result->free();
-    }
-
-    $mysqli->close();
-    ?>
   </div>
+
 </body>
 </html>

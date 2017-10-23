@@ -2,12 +2,34 @@
 <head>
   <title>EECS 448 - Lab 5 - Exercise 2</title>
   <link type="text/css" rel="stylesheet" href="style.css">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
 </head>
 <body>
-  <form action="CreateUser.php" method="post" class="center">
-    <h1>Create User</h1>
-    Username: <input type="text" name="username" required></input><br>
-    <input type="submit" value="Submit">
-  </form>
+  <div class="tabs">
+    <ul>
+      <li><big><big><b>Lab 5</b></big></big></li>
+      <li class="is-active"><a href="CreateUser.html">Create User</a></li>
+      <li><a href="CreatePosts.html">Create Post</a></li>
+      <li><a href="AdminHome.html">Admin Home</a></li>
+      <li class="navbar-end"><a href="https://github.com/BenSokol/Lab-5">
+        <img class="github-image" src="/~b843s521/EECS448/Lab-5/img/gh.png" alt="Github">
+      </a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <form action="CreateUser.php" method="post">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input class="input" type="text" name="username" required></input>
+        </div>
+      </div>
+      <div class="control">
+        <button type="submit" value="Submit" class="button is-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
 </body>
 </html>

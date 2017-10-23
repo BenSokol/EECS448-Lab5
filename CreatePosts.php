@@ -2,10 +2,22 @@
 <head>
   <title>EECS 448 - Lab 5 - Exercise 3</title>
   <link type="text/css" rel="stylesheet" href="style.css">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
 </head>
 <body>
-  <div class="form">
-    <h1 class="center">Create User</h1>
+  <div class="tabs">
+    <ul>
+      <li><big><big><b>Lab 5</b></big></big></li>
+      <li><a href="CreateUser.html">Create User</a></li>
+      <li class="is-active"><a href="CreatePosts.html">Create Post</a></li>
+      <li><a href="AdminHome.html">Admin Home</a></li>
+      <li class="navbar-end"><a href="https://github.com/BenSokol/Lab-5">
+        <img class="github-image" src="/~b843s521/EECS448/Lab-5/img/gh.png" alt="Github">
+      </a></li>
+    </ul>
+  </div>
+
+  <div class="container below-navbar">
     <?php
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
@@ -20,22 +32,56 @@
     list($count) = $result->fetch_row();
 
     if (!isset($_POST["username"])) {
-      print "ERROR: Usernames must contain at least 1 character<br><br>";
+      print "<article class=\"message is-danger\">";
+      print "<div class=\"message-header\">";
+      print "<p>ERROR</p>";
+      print "</div>";
+      print "<div class=\"message-body\">";
+      print "Usernames must contain at least 1 character";
+      print "</div>";
+      print "</article>";
     }
     else if (!isset($_POST["post"])) {
-      print "ERROR: Posts must contain at least 1 character<br><br>";
+      print "<article class=\"message is-danger\">";
+      print "<div class=\"message-header\">";
+      print "<p>ERROR</p>";
+      print "</div>";
+      print "<div class=\"message-body\">";
+      print "Posts must contain at least 1 character";
+      print "</div>";
+      print "</article>";
     }
     else if ($count) {
       if (!$mysqli->query("INSERT INTO Posts (author_id, content) VALUES ('".$_POST["username"]."','".$_POST["post"]."')")) {
+        print "<article class=\"message is-danger\">";
+        print "<div class=\"message-header\">";
+        print "<p>ERROR</p>";
+        print "</div>";
+        print "<div class=\"message-body\">";
         print "An ERROR has occured when checking if the username is in the database.";
+        print "</div>";
+        print "</article>";
       }
       else {
-        print "Welcome ".$_POST["username"]."!<br><br>";
-        print "Your post has been sucessfully created!<br><br>";
+        print "<article class=\"message is-dark\">";
+        print "<div class=\"message-header\">";
+        print "<p>Welcome ".$_POST["username"]."!</p>";
+        print "</div>";
+        print "<div class=\"message-body\">";
+        print "Your post has been sucessfully created!";
+        print "</div>";
+        print "</article>";
       }
     }
     else {
-      print "ERROR: the username '".$_POST["username"]."' has not been created.<br><br>";
+      print "<article class=\"message is-danger\">";
+      print "<div class=\"message-header\">";
+      print "<p>ERROR</p>";
+      print "</div>";
+      print "<div class=\"message-body\">";
+      print "The username '".$_POST["username"]."' has not been created.";
+      print "</div>";
+      print "</article>";
     }
 
     $mysqli->close();
