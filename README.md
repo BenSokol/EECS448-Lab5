@@ -7,3 +7,4 @@ The finished lab is live [here](https://people.eecs.ku.edu/~b843s521/EECS448/Lab
 
 # Works Cited
 * [Bulma](https://github.com/jgthms/bulma) CSS Framework \[MIT\]
+* [Github-logo.png](https://github.com/logos)
