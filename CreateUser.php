@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>EECS 448 - Lab 5 - Exercise 2</title>
-  <link type="text/css" rel="stylesheet" href="style.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
       <li><a href="CreatePosts.html">Create Post</a></li>
       <li><a href="AdminHome.html">Admin Home</a></li>
       <li class="navbar-end"><a href="https://github.com/BenSokol/Lab-5">
-        <img class="github-image" src="/~b843s521/EECS448/Lab-5/img/gh.png" alt="Github">
+        <img class="github-image" src="img/gh.png" alt="Github">
       </a></li>
     </ul>
   </div>
@@ -28,8 +28,20 @@
       exit();
     }
 
-    $result = $mysqli->query("SELECT COUNT(user_id) FROM Users WHERE user_id = '".$_POST["username"]."'");
-    list($count) = $result->fetch_row();
+    if($result = $mysqli->query("SELECT COUNT(user_id) FROM Users WHERE user_id = '".$mysqli->real_escape_string($_POST["username"])."'")) {
+      list($count) = $result->fetch_row();
+    }
+    else {
+      print "<article class=\"message is-danger\">";
+      print "<div class=\"message-header\">";
+      print "<p>ERROR</p>";
+      print "</div>";
+      print "<div class=\"message-body\">";
+      print "An ERROR has occured when adding the username to the database.";
+      print "</div>";
+      print "</article>";
+      $count = 0;
+    }
 
     if ($count) {
       print "<article class=\"message is-danger\">";
@@ -52,7 +64,7 @@
       print "</article>";
     }
     else {
-      if (!$mysqli->query("INSERT INTO Users (user_id) VALUES ('".$_POST["username"]."')")) {
+      if (!$mysqli->query("INSERT INTO Users (user_id) VALUES ('".$mysqli->real_escape_string($_POST["username"])."')")) {
         print "<article class=\"message is-danger\">";
         print "<div class=\"message-header\">";
         print "<p>ERROR</p>";
