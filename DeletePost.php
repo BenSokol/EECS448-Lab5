@@ -13,7 +13,7 @@
       <li><a href="CreatePosts.html">Create Post</a></li>
       <li class="is-active"><a>Admin Home</a></li>
       <li class="navbar-end"><a href="https://github.com/BenSokol/Lab-5">
-        <img class="github-image" src="img/gh.png" alt="Github">
+        <img class="github-image" src="img/Github-logo.png" alt="Github">
       </a></li>
     </ul>
   </div>
@@ -46,6 +46,7 @@
       printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
     }
+
     print "<div class=\"message-box\">";
     if (isset($_POST['posts'])) {
       print "<article class=\"message is-danger\">";
@@ -55,19 +56,26 @@
       print "</div>";
       print "<div class=\"message-body\">";
 
-      print "Deleted ";
+      print "Deleted post";
       $posts = $_POST['posts'];
+      if(!sort($posts)) {
+        $posts = $_POST['posts'];
+      }
+      if(sizeof($posts) > 1) {
+        print "s";
+      }
+      print " ";
       for($i = 0; $i < sizeof($posts); $i++) {
         $mysqli->query("DELETE FROM Posts WHERE post_id='".$posts[$i]."'");
         print $posts[$i];
-        print ($i < (sizeof($posts) - 1) ? ", " : "");
+        print ($i < (sizeof($posts) - 1) ? ($i == (sizeof($posts) - 2) ? " and " : ", ") : ".");
       }
       print "</div>";
       print "</article>";
     }
     print "</div>";
 
-    if ($result = $mysqli->query("SELECT post_id, content, author_id FROM Posts")) {
+    if ($result = $mysqli->query("SELECT post_id, content, author_id FROM Posts ORDER by author_id")) {
       print "<form method=\"POST\">";
       print "<table class=\"table is-hoverable\">";
       print "<thead><tr><th>Author</th><th>Post</th><th>Delete?</th></tr></thead>";
@@ -75,7 +83,7 @@
       while ($row = $result->fetch_assoc()) {
         print "<tr>";
         print "<td>".$row["author_id"]."</td>";
-        print "<td>".$row["content"]."</td>";
+        print "<td>".nl2br($row["content"])."</td>";
         print "<td class=\"center\"><input type=\"checkbox\" name=\"posts[]\" value=\"".$row["post_id"]."\">";
         print "</tr>";
       }
